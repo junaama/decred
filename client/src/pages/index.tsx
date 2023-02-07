@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import useMintKudos from '@/hooks/useMintKudos'
-
-const inter = Inter({ subsets: ['latin'] })
-
+import useFarcasterUser from '@/hooks/useFarcasterUser'
 export default function Home() {
   const { kudos, loading, error } = useMintKudos('0x75479B52c8ccBD74716fb3EA17074AAeF14c66a2')
+  const { user } = useFarcasterUser('0x75479B52c8ccBD74716fb3EA17074AAeF14c66a2')
+  console.log("user", user,)
   console.log("kudos", kudos,)
   return (
     <>
@@ -17,15 +17,6 @@ export default function Home() {
       </Head>
       <main>
         <div>
-          {loading && <p>Loading...</p>}
-          {error && <p>{error.message}</p>}
-          {!loading && kudos && kudos.map((kudo: any) => (
-            <div key={kudo.id}>
-              <p>{kudo.kudosTokenId}</p>
-              <p>{kudo.headline}</p>
-              <img src={kudo.assetUrl}/>
-              </div>
-          ))}
         </div>
       </main>
     </>

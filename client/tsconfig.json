@@ -32,8 +32,9 @@
     "**/*.ts",
     "**/*.tsx",
     "src/**/*",
-    "next.config.cjss",
-    "next.config.cjsjs"
+    "next.config.cjs",
+    "environment.d.ts",
+    "next-env.d.ts", "webpack.config.js", "webpack.config.js",
   ],
   "exclude": [
     "node_modules"
