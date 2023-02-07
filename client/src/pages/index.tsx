@@ -1,12 +1,19 @@
-import Head from 'next/head'
-import { Inter } from '@next/font/google'
-import useMintKudos from '@/hooks/useMintKudos'
-import useFarcasterUser from '@/hooks/useFarcasterUser'
+import Head from "next/head";
+import styled from "styled-components";
+import useMintKudos from "@/hooks/useMintKudos";
+import useFarcasterUser from "@/hooks/useFarcasterUser";
+import { ProfileContainer } from "@/components/Profile/ProfileContainer";
+import { Search } from "@/components/Search/Search";
+
 export default function Home() {
-  const { kudos, loading, error } = useMintKudos('0x75479B52c8ccBD74716fb3EA17074AAeF14c66a2')
-  const { user } = useFarcasterUser('0x75479B52c8ccBD74716fb3EA17074AAeF14c66a2')
-  console.log("user", user,)
-  console.log("kudos", kudos,)
+  // const { kudos, loading, error } = useMintKudos(
+  //   "0x75479B52c8ccBD74716fb3EA17074AAeF14c66a2"
+  // );
+  // const { user } = useFarcasterUser(
+  //   "0x75479B52c8ccBD74716fb3EA17074AAeF14c66a2"
+  // );
+  // console.log("user", user);
+  // console.log("kudos", kudos);
   return (
     <>
       <Head>
@@ -17,8 +24,15 @@ export default function Home() {
       </Head>
       <main>
         <div>
+          <Header>Decred</Header>
+          <Search />
+          <ProfileContainer />
         </div>
       </main>
     </>
-  )
+  );
 }
+
+const Header = styled.h1`
+  font-family: "Rubik Mono One", sans-serif;
+`;
