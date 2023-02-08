@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 export const Search = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
-  const handleChange = (event) => {
+  const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setQuery(event.target.value);
   };
 
-  const handleSearch = (event) => {
+  const handleSearch = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     console.log("query", query);
     setQuery("");
