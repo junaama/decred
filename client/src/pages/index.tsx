@@ -1,19 +1,37 @@
 import Head from "next/head";
 import styled from "styled-components";
-import useMintKudos from "@/hooks/useMintKudos";
-import useFarcasterUser from "@/hooks/useFarcasterUser";
 import { ProfileContainer } from "@/components/Profile/ProfileContainer";
 import { Search } from "@/components/Search/Search";
+import { useQuery, gql } from "@apollo/client";
 
+//   const GET_PROFILE = gql`
+//   query GetProfile {
+//     profile(request: {handle: "naama.lens"}) {
+//       name
+//       id
+//       stats {
+//         totalFollowers
+//       }
+//     }
+//   }
+// `
+const GET_DEFAULT = gql`
+    query GetDefaultProfile {
+    defaultProfile(request: {ethereumAddress: "0x75479B52c8ccBD74716fb3EA17074AAeF14c66a2"} )
+      {
+        name
+        stats {
+        totalFollowers
+        }
+
+      }
+    }
+
+`
 export default function Home() {
-  // const { kudos, loading, error } = useMintKudos(
-  //   "0x75479B52c8ccBD74716fb3EA17074AAeF14c66a2"
-  // );
-  // const { user } = useFarcasterUser(
-  //   "0x75479B52c8ccBD74716fb3EA17074AAeF14c66a2"
-  // );
-  // console.log("user", user);
-  // console.log("kudos", kudos);
+  const {loading, error, data} = useQuery(GET_DEFAULT)
+  console.log('data: ', data)
+
   return (
     <>
       <Head>

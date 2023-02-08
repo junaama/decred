@@ -158,6 +158,7 @@ type Poap {
     farcasterUserFromAddress(address: String!): FarcasterUser
     lensProfileFromAddress(address: String!): LensProfile
     poapsFromAddress(address: String!): [Poap]
+    # accountsFromPoaps(poapEventId: Int!): [Account]
   }
 
 `;

@@ -12,6 +12,7 @@
     "apollo-start": "yarn compile && node ./dist/index.js"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.7",
     "@apollo/datasource-rest": "^5.0.1",
     "@apollo/server": "^4.3.2",
     "@as-integrations/next": "^1.2.0",
