@@ -10,7 +10,6 @@ interface ContextValue {
     gitPoapAPI: GitPoapAPI;
     mintKudosAPI: MintKudosAPI;
     farcasterAPI: FarcasterAPI;
-    lensAPI: LensAPI;
     poapAPI: PoapAPI;
   };
 }
@@ -156,7 +155,6 @@ type Poap {
     accountsFromGitPoap(gitPoapEventId: Int!): [Account]
     kudosFromAddress(address: String!): MintKudos
     farcasterUserFromAddress(address: String!): FarcasterUser
-    lensProfileFromAddress(address: String!): LensProfile
     poapsFromAddress(address: String!): [Poap]
     # accountsFromPoaps(poapEventId: Int!): [Account]
   }
@@ -255,44 +253,44 @@ type Result = {
 type FarcasterUser = {
   result: Result;
 };
-type Attribute = {
-  displayType: String;
-  traitType: String;
-  key: String;
-  value: String;
-};
-type Stats = {
-  totalFollowers: number;
-  totalFollowing: number;
-  totalPosts: number;
-  totalComments: number;
-  totalMirrors: number;
-  totalPublications: number;
-  totalCollects: number;
-};
-type Image = {
-  url: String;
-  mimeType: String;
-};
-type Picture = {
-  original: Image;
-};
-type LensProfile = {
-  id: String;
-  name: String;
-  bio: String;
-  attributes: [Attribute];
-  followNftAddress: String;
-  metadata: String;
-  isDefault: boolean;
-  picture: Picture;
-  handle: String;
-  coverPicture: Picture;
-  ownedBy: String;
-  dispatcher: String;
-  stats: Stats;
-  followModule: String;
-};
+// type Attribute = {
+//   displayType: String;
+//   traitType: String;
+//   key: String;
+//   value: String;
+// };
+// type Stats = {
+//   totalFollowers: number;
+//   totalFollowing: number;
+//   totalPosts: number;
+//   totalComments: number;
+//   totalMirrors: number;
+//   totalPublications: number;
+//   totalCollects: number;
+// };
+// type Image = {
+//   url: String;
+//   mimeType: String;
+// };
+// type Picture = {
+//   original: Image;
+// };
+// type LensProfile = {
+//   id: String;
+//   name: String;
+//   bio: String;
+//   attributes: [Attribute];
+//   followNftAddress: String;
+//   metadata: String;
+//   isDefault: boolean;
+//   picture: Picture;
+//   handle: String;
+//   coverPicture: Picture;
+//   ownedBy: String;
+//   dispatcher: String;
+//   stats: Stats;
+//   followModule: String;
+// };
 class GitPoapAPI extends RESTDataSource {
   override baseURL = "https://public-api.gitpoap.io/";
 
@@ -351,14 +349,6 @@ class FarcasterAPI extends RESTDataSource {
   }
 }
 
-class LensAPI extends RESTDataSource {
-  override baseURL = "https://api.lens.dev/";
-
-  async getLensProfile(address: string): Promise<LensProfile> {
-    const data = await this.get<LensProfile>(`profile/${address}`);
-    return data;
-  }
-}
 class PoapAPI extends RESTDataSource {
   override baseURL = "https://api.poap.tech/";
   private token: string;
@@ -398,9 +388,6 @@ const resolvers = {
     farcasterUserFromAddress: async (_, { address }, { dataSources }) =>
       dataSources.farcasterAPI.getFarcasterUser(address),
     // @ts-ignore
-    lensProfileFromAddress: async (_, { address }, { dataSources }) =>
-      dataSources.lensAPI.getLensProfile(address),
-    // @ts-ignore
     poapsFromAddress: async (_, { address }, { dataSources }) =>
       dataSources.poapAPI.getPoaps(address),
   },
@@ -423,7 +410,6 @@ export default startServerAndCreateNextHandler<ContextValue>(server, {
         gitPoapAPI: new GitPoapAPI({ cache }),
         mintKudosAPI: new MintKudosAPI({ cache }),
         farcasterAPI: new FarcasterAPI(fcOptions),
-        lensAPI: new LensAPI({ cache }),
         poapAPI: new PoapAPI({token:poapKey, cache}),
       },
     };

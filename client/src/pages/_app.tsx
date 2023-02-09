@@ -7,9 +7,10 @@ import {
 } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://api.lens.dev/",
+  uri: "http://localhost:3000/api/apollo",
   cache: new InMemoryCache(),
 });
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>

@@ -7,40 +7,28 @@ type Profile = {
   lensFollowers: number;
   farcasterFollowers: number;
   gitPoapsCount: number;
-  buildSpaceCount: number;
   poapsCount: number;
+  kudosCount: number;
   affiliations: string[];
 };
-const dummyProfiles: Profile[] = [
-  {
-    displayName: "naama.eth",
-    profileImage: "/profilepic.png",
-    lensFollowers: 10,
-    farcasterFollowers: 100,
-    gitPoapsCount: 0,
-    buildSpaceCount: 2,
-    poapsCount: 30,
-    affiliations: ["Developer DAO", "Gitcoin", "Boys Club", "OpenSea"],
-  },
-  {
-    displayName: "pistachiomilk.eth",
-    profileImage: "",
-    lensFollowers: 0,
-    farcasterFollowers: 3,
-    gitPoapsCount: 0,
-    buildSpaceCount: 0,
-    poapsCount: 130,
-    affiliations: ["OpenSea", "ETHGlobal", "Pudgy Penguins"],
-  },
-];
-export const ProfileContainer = (profile: Profile) => {
+
+export const ProfileContainer = ({
+  displayName,
+  profileImage,
+  lensFollowers,
+  farcasterFollowers,
+  gitPoapsCount,
+  poapsCount,
+  kudosCount,
+  affiliations,
+}: Profile) => {
   return (
     <Container>
       <div>
-        {profile.profileImage ? (
+        {profileImage ? (
           <Image
             alt="profile-image"
-            src={profile.profileImage}
+            src={profileImage}
             width={150}
             height={150}
           />
@@ -50,45 +38,58 @@ export const ProfileContainer = (profile: Profile) => {
       </div>
       <InfoContainer>
         <Heading>
-          <HeadingName>{profile.displayName}</HeadingName>
-          {profile.lensFollowers ? (
-            <Text>Lens Followers: {profile.lensFollowers}</Text>
-          ) : (
-            <></>
-          )}
-          {profile.farcasterFollowers ? (
-            <Text>Farcaster Followers: {profile.farcasterFollowers}</Text>
+          <HeadingName>{displayName}</HeadingName>
+          {lensFollowers ? <Text>Lens Followers: {lensFollowers}</Text> : <></>}
+          {farcasterFollowers ? (
+            <>
+              <Image
+                alt="farcaster logo"
+                src="/farcaster-logo.png"
+                width={32}
+                height={32}
+              />
+              <Text>{farcasterFollowers}</Text>
+            </>
           ) : (
             <></>
           )}
         </Heading>
         <Heading>
-          {profile.affiliations.map((affiliation) => (
+          {affiliations.map((affiliation) => (
             <Text>{affiliation}</Text>
           ))}
         </Heading>
         <Column>
-          {profile.gitPoapsCount ? (
-            <Text>GitPoaps: {profile.gitPoapsCount}</Text>
-          ) : (
-            <></>
-          )}
-          {profile.buildSpaceCount ? (
-            <Text>BuildSpace: {profile.buildSpaceCount}</Text>
-          ) : (
-            <></>
-          )}
-          {profile.poapsCount ? (
-            <Text>POAPs: {profile.poapsCount}</Text>
-          ) : (
-            <></>
-          )}
+          {gitPoapsCount ? <Text>GitPoaps: {gitPoapsCount}</Text> : <></>}
+          {kudosCount ? <Text>BuildSpace: {kudosCount}</Text> : <></>}
+          {poapsCount ? <Text>POAPs: {poapsCount}</Text> : <></>}
         </Column>
       </InfoContainer>
     </Container>
   );
 };
-
+const dummyProfiles: Profile[] = [
+  {
+    displayName: "naama.eth",
+    profileImage: "/profilepic.png",
+    lensFollowers: 10,
+    farcasterFollowers: 100,
+    gitPoapsCount: 0,
+    poapsCount: 30,
+    kudosCount: 0,
+    affiliations: ["Developer DAO", "Gitcoin", "Boys Club", "OpenSea"],
+  },
+  {
+    displayName: "pistachiomilk.eth",
+    profileImage: "",
+    lensFollowers: 0,
+    farcasterFollowers: 3,
+    gitPoapsCount: 0,
+    poapsCount: 130,
+    kudosCount: 0,
+    affiliations: ["OpenSea", "ETHGlobal", "Pudgy Penguins"],
+  },
+];
 ProfileContainer.defaultProps = dummyProfiles[0];
 
 const Container = styled.div`
