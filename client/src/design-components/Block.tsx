@@ -38,6 +38,6 @@ const Outline = styled.div.attrs<OutlineProps>(
  * Example: <Block width={220} height={320}/>
  * Example: <Block.Outline width={100} height={100} radius={8} />
  */
-export const Body = Object.assign(Default, {
+export const Block = Object.assign(Default, {
   Outline,
 });
