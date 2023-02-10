@@ -36,7 +36,7 @@ const typeDefs = `#graphql
   }
 
   type Kudos {
-      kudosTokenId: Int
+    kudosTokenId: Int
     headline: String
     assetUrl: String
     createdAt: String
