@@ -47,6 +47,7 @@ const ProfilePage = () => {
   // validateProfileQuery(id)
   const { loading, error, data } = useQuery(PROFILE_DATA, {
     variables: { address: id },
+    errorPolicy: "all",
   });
   const poapCount = data?.poapsFromAddress?.length;
   const gitPoapCount = data?.gitPoapsFromAddress?.length;
