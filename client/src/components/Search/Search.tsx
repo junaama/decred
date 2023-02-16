@@ -52,11 +52,13 @@ const Container = styled.div`
   padding: 8px;
   display: flex;
   gap: 4px;
+  width: 100%;
 `;
 const Input = styled.input`
   outline: none;
   width: 100%;
   border: none;
+  background-color: rgba(245, 238, 254, 0.2);
 `;
 
 const IconButton = styled.button`

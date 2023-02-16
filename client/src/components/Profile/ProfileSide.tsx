@@ -25,7 +25,7 @@ export const ProfileSide = ({
   communities,
 }: Props) => {
   return (
-    <Block.Outline width={330} height={575} spacing={20}>
+    <Block.Outline width={330} height={500} spacing={20}>
       <Flex.Column cssStyles={{ gap: "16px" }}>
         <ProfileBlock src={profileImage} width={150} height={150} />
         <Text.Heading color="black" size={24}>
@@ -45,7 +45,7 @@ export const ProfileSide = ({
           <Flex cssStyles={{ gap: "8px" }}>
             <Link href={lens.href}>
               <Text.Heading color="black" size={16}>
-                @{lens.name}
+                {lens.name}
               </Text.Heading>
             </Link>
             <Text.Info size={16} weight={600}>

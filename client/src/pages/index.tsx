@@ -6,6 +6,7 @@ import { useQuery, gql } from "@apollo/client";
 import { Tabs } from "@/components/Tabs";
 import { Kudos } from "@/components/Cards/Kudos";
 import { ProfileSide } from "@/components/Profile/ProfileSide";
+import { Flex } from "@/design-components/Flex";
 //   const GET_PROFILE = gql`
 //   query GetProfile {
 //     profile(request: {handle: "naama.lens"}) {
@@ -43,18 +44,28 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div>
-          <Header>Decred</Header>
+        <div style={{margin: "20px"}}>
+          <Flex.SpaceBetween cssStyles={{gap: "16px", marginBottom: "24px"}}>
+              <Header>Decred</Header>
           <Search />
-          <Tabs />
-          <ProfileContainer />
-          <Kudos
+          </Flex.SpaceBetween>
+          <Flex cssStyles={{gap: "16px"}}>
+            <ProfileSide />
+           
+            <Flex.Column cssStyles={{gap: "16px"}}> <Tabs />
+                  <Kudos
             headline="WBW# Community Contributer"
             assetUrl=""
             holderAmount="95"
             communityName="Mint Kudos"
           />
-          <ProfileSide />
+            </Flex.Column>
+          
+          </Flex>
+          
+          {/* <ProfileContainer /> */}
+        
+          
         </div>
       </main>
     </>

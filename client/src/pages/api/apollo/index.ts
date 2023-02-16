@@ -158,6 +158,7 @@ type Poap {
     poapsFromAddress(address: String!): [Poap]
     # accountsFromPoaps(poapEventId: Int!): [Account]
   }
+  
 
 `;
 const users = [
@@ -170,6 +171,7 @@ const users = [
     ensAddress: "",
   },
 ];
+
 type PoapEvent = {
   id: number;
   fancy_id: string;
@@ -253,44 +255,11 @@ type Result = {
 type FarcasterUser = {
   result: Result;
 };
-// type Attribute = {
-//   displayType: String;
-//   traitType: String;
-//   key: String;
-//   value: String;
-// };
-// type Stats = {
-//   totalFollowers: number;
-//   totalFollowing: number;
-//   totalPosts: number;
-//   totalComments: number;
-//   totalMirrors: number;
-//   totalPublications: number;
-//   totalCollects: number;
-// };
-// type Image = {
-//   url: String;
-//   mimeType: String;
-// };
-// type Picture = {
-//   original: Image;
-// };
-// type LensProfile = {
-//   id: String;
-//   name: String;
-//   bio: String;
-//   attributes: [Attribute];
-//   followNftAddress: String;
-//   metadata: String;
-//   isDefault: boolean;
-//   picture: Picture;
-//   handle: String;
-//   coverPicture: Picture;
-//   ownedBy: String;
-//   dispatcher: String;
-//   stats: Stats;
-//   followModule: String;
-// };
+
+type SearchResult = {
+
+}
+
 class GitPoapAPI extends RESTDataSource {
   override baseURL = "https://public-api.gitpoap.io/";
 
@@ -367,6 +336,7 @@ class PoapAPI extends RESTDataSource {
     return data;
   }
 }
+
 const resolvers = {
   Query: {
     accounts: () => users,
