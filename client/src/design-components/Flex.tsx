@@ -1,12 +1,18 @@
-import styled from "styled-components";
+import styled, { CSSObject } from "styled-components";
 
-const Row = styled.div`
+type Props = {
+  cssStyles?: CSSObject;
+};
+
+const Row = styled.div<Props>`
   display: flex;
   flex-direction: row;
+  ${(props) => props.cssStyles};
 `;
-const Column = styled.div`
+const Column = styled.div<Props>`
   display: flex;
   flex-direction: column;
+  ${(props) => props.cssStyles};
 `;
 
 const SpaceBetween = styled(Row)`
